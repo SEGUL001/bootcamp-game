@@ -8,7 +8,14 @@ import javax.persistence.*;
 public class Mod extends Item {
 
     @ManyToOne
-    @JoinColumn
-    private Game game;
+    @JoinColumn(name = "game_id")
+    private Item item;
 
+    public Item getGame() {
+        return item;
+    }
+
+    public void setGame(Item item) {
+        this.item = item;
+    }
 }

@@ -8,7 +8,7 @@ import java.util.Set;
 @Entity
 public class Game extends Item {
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private Set<Mod> mods;
 
 }

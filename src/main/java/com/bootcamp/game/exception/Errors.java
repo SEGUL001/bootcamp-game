@@ -6,4 +6,9 @@ public interface Errors {
     String GAME_NOT_FOUND = "Game not found!";
     String CATEGORY_NOT_FOUND = "Category not found";
     String ERROR_SAVING_GAME = "Error saving game";
+    String MOD_NOT_FOUND = "Mod not found!";
+    String ERROR_SAVING_USER = "Error saving user";
+    String ERROR_GIVING_GAME = "Error giving game to user";
+    String ERROR_GIVING_MOD = "Error giving mod to user";
+
 }

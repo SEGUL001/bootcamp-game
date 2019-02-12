@@ -24,7 +24,13 @@ public class GameService {
             Game game = new Game();
             game.setCategory(categoryRepository.findById(gameRequest.getCategory()).orElseThrow(()-> new AppException(Errors.CATEGORY_NOT_FOUND)));
             game.setName(gameRequest.getName());
+            try{
             return itemRepository.save(game);
+            }
+            catch (Exception e){
+                throw new AppException(Errors.ERROR_SAVING_GAME);
+            }
+
    }
 
     public List getGames(){
