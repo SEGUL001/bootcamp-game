@@ -11,11 +11,4 @@ public class Game extends Item {
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
     private Set<Mod> mods;
 
-    public Set<Mod> getMods() {
-        return mods;
-    }
-
-    public void setMods(Set<Mod> mods) {
-        this.mods = mods;
-    }
 }

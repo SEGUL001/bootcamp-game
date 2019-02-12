@@ -10,8 +10,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Item extends BaseNamedEntity {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Item extends BaseNamedEntity {
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
@@ -19,17 +20,18 @@ public class Item extends BaseNamedEntity {
     @JsonIgnore
     private Category category;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "items")
     private Set<User> users = new HashSet<>();
 
 
     public Category getCategory() {
-        return category;
-    }
+      return category;
+  }
 
     public void setCategory(Category category) {
         this.category = category;
-    }
+   }
 
     public Set<User> getUsers() {
         return users;

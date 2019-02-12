@@ -1,8 +1,11 @@
 package com.bootcamp.game.service;
 
-import com.bootcamp.game.dao.GameRepository;
+import com.bootcamp.game.dao.CategoryRepository;
+import com.bootcamp.game.dao.ItemRepository;
 import com.bootcamp.game.exception.AppException;
+import com.bootcamp.game.exception.Errors;
 import com.bootcamp.game.model.Game;
+import com.bootcamp.game.payload.GameRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,19 +15,20 @@ import java.util.List;
 public class GameService {
 
     @Autowired
-    private GameRepository gameRepository;
+    private ItemRepository itemRepository;
 
-    public Game saveGame(Game game){
-        try {
-            return gameRepository.save(game);
-        }
-        catch (Exception e) {
-            throw new AppException("Error saving game");
-        }
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    public Game saveGame(GameRequest gameRequest){
+            Game game = new Game();
+            game.setCategory(categoryRepository.findById(gameRequest.getCategory()).orElseThrow(()-> new AppException(Errors.CATEGORY_NOT_FOUND)));
+            game.setName(gameRequest.getName());
+            return itemRepository.save(game);
    }
 
     public List getGames(){
-        return gameRepository.findAll();
+        return itemRepository.findAll();
     }
 
 }
